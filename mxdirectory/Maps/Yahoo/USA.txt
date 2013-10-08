@@ -1,0 +1,7 @@
+<form name="mapForm2" action="http://us.rd.yahoo.com/maps/home/submit_a/*-http://maps.yahoo.com/maps" target="_new" method="get">
+<input type="hidden" name="addr" value="<{$link.address}>" />
+<input type="hidden" name="csz" value="<{$link.city}>, <{$link.state}> <{$link.zip}>" />
+<input type="hidden" name="country" value="us" />
+<input type="hidden" name="srchtype" value="a" />
+<input name="getmap" type="submit" class="c_mapbtn" value="<{$smarty.const._MD_MXDIR_MAPBTN}>" />
+</form>

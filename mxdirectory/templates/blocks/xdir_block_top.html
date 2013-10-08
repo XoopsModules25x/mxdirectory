@@ -1,0 +1,5 @@
+<ul>
+  <{foreach item=link from=$block.links}>
+    <li><a href="<{$xoops_url}>/modules/<{$link.mydirname}>/singlelink.php?cid=<{$link.cid}>&amp;lid=<{$link.id}>"><{$link.title}></a> (<{$link.criteria}>)</li>
+  <{/foreach}>
+</ul>
