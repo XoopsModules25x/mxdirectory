@@ -70,33 +70,33 @@ $xoopsTpl->assign('xmid', $xoopsModule->getVar('mid'));
 $count = 1;
 while($myrow = $xoopsDB->fetchArray($result)) {
 
-	$imgurl = '';
-	if ($myrow['imgurl'] && $myrow['imgurl'] != "http://"){
-		$imgurl = $myts->htmlSpecialChars($myrow['imgurl']);
-	}
-	$totallink = getTotalItems($myrow['cid'], 1);
+    $imgurl = '';
+    if ($myrow['imgurl'] && $myrow['imgurl'] != "http://"){
+        $imgurl = $myts->htmlSpecialChars($myrow['imgurl']);
+    }
+    $totallink = getTotalItems($myrow['cid'], 1);
 
-	// get child category objects
-	$arr = array();
-	$arr = $mytree->getFirstChild($myrow['cid'], "title");
-	$space = 0;
-	$chcount = 0;
-	$subcategories = '';
-	foreach($arr as $ele){
-		$chtitle = $myts->htmlSpecialChars($ele['title']);
-		if ($chcount > 5) {
-			$subcategories .= "...";
-			break;
-		}
-		if ($space>0) {
-			$subcategories .= ", ";
-		}
-		$subcategories .= "<a href=\"".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/viewcat.php?cid=".$ele['cid']."\">".$chtitle."</a>";
-		$space++;
-		$chcount++;
-	}
-	$xoopsTpl->append('categories', array('image' => $imgurl, 'id' => $myrow['cid'], 'title' => $myts->htmlSpecialChars($myrow['title']), 'subcategories' => $subcategories, 'totallink' => $totallink, 'count' => $count));
-	$count++;
+    // get child category objects
+    $arr = array();
+    $arr = $mytree->getFirstChild($myrow['cid'], "title");
+    $space = 0;
+    $chcount = 0;
+    $subcategories = '';
+    foreach($arr as $ele){
+        $chtitle = $myts->htmlSpecialChars($ele['title']);
+        if ($chcount > 5) {
+            $subcategories .= "...";
+            break;
+        }
+        if ($space>0) {
+            $subcategories .= ", ";
+        }
+        $subcategories .= "<a href=\"".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/viewcat.php?cid=".$ele['cid']."\">".$chtitle."</a>";
+        $space++;
+        $chcount++;
+    }
+    $xoopsTpl->append('categories', array('image' => $imgurl, 'id' => $myrow['cid'], 'title' => $myts->htmlSpecialChars($myrow['title']), 'subcategories' => $subcategories, 'totallink' => $totallink, 'count' => $count));
+    $count++;
 
 }
 
@@ -105,16 +105,16 @@ list($numrows) = $xoopsDB->fetchRow($xoopsDB->query("select count(*) from ".$xoo
 $xoopsTpl->assign('lang_thereare', sprintf(_MD_MXDIR_THEREARE,$numrows));
 
 if ($xoopsModuleConfig['useshots'] == 1) {
-	$xoopsTpl->assign('shotwidth', $xoopsModuleConfig['logo_maximgwidth']);
-	$xoopsTpl->assign('tablewidth', $xoopsModuleConfig['logo_maximgwidth'] + 10);
-	$xoopsTpl->assign('show_screenshot', true);
-	$xoopsTpl->assign('lang_noscreenshot', _MD_MXDIR_NOSHOTS);
+    $xoopsTpl->assign('shotwidth', $xoopsModuleConfig['logo_maximgwidth']);
+    $xoopsTpl->assign('tablewidth', $xoopsModuleConfig['logo_maximgwidth'] + 10);
+    $xoopsTpl->assign('show_screenshot', true);
+    $xoopsTpl->assign('lang_noscreenshot', _MD_MXDIR_NOSHOTS);
 }
 
 if ($xoopsUser && $xoopsUser->isAdmin($xoopsModule->mid())) {
-	$isadmin = true;
+    $isadmin = true;
 } else {
-	$isadmin = false;
+    $isadmin = false;
 }
 
 $xoopsTpl->assign('lang_description', _MD_MXDIR_DESCRIPTIONC);
@@ -160,30 +160,30 @@ $is_owner = (!empty($xoopsUser) && ($xoopsUser->getvar('uid') == $submitter)) ? 
 
 $lvlopts = getPremiumOptions($premium);
 
-	if ($isadmin) {
-		$adminlink = '<a href="'.XOOPS_URL.'/modules/' . $xoopsModule->getVar('dirname') . '/admin/main.php?op=modLink&amp;lid='.$lid.'"><img src="'. $pathIcon16 .'/edit.png"'.' border="0" alt="'._MD_MXDIR_EDITTHISLINK.'" /></a>';
-	} else {
-		$adminlink = '';
-	}
-	if ($votes == 1) {
-		$votestring = _MD_MXDIR_ONEVOTE;
-	} else {
-		$votestring = sprintf(_MD_MXDIR_NUMVOTES,$votes);
-	}
-	$path = $mytree->getPathFromId($cid, "title");
-	$path = substr($path, 1);
-	$path = str_replace("/"," - ",$path);
-	$new = newlinkgraphic($time, $status);
-	$pop = popgraphic($hits);
+    if ($isadmin) {
+        $adminlink = '<a href="'.XOOPS_URL.'/modules/' . $xoopsModule->getVar('dirname') . '/admin/main.php?op=modLink&amp;lid='.$lid.'"><img src="'. $pathIcon16 .'/edit.png"'.' border="0" alt="'._MD_MXDIR_EDITTHISLINK.'" /></a>';
+    } else {
+        $adminlink = '';
+    }
+    if ($votes == 1) {
+        $votestring = _MD_MXDIR_ONEVOTE;
+    } else {
+        $votestring = sprintf(_MD_MXDIR_NUMVOTES,$votes);
+    }
+    $path = $mytree->getPathFromId($cid, "title");
+    $path = substr($path, 1);
+    $path = str_replace("/"," - ",$path);
+    $new = newlinkgraphic($time, $status);
+    $pop = popgraphic($hits);
 //	$coupon_handler =& xoops_getmodulehandler('coupon', $mydirname);
-	$coupon_handler = new XdirectoryCouponHandler($GLOBALS['xoopsDB']);
-	$coupons = $coupon_handler->getCountByLink($lid);
+    $coupon_handler = new XdirectoryCouponHandler($GLOBALS['xoopsDB']);
+    $coupons = $coupon_handler->getCountByLink($lid);
 
-	$ratingfl = (($rating/2) - floor(($rating/2)) < 0.5) ? intval(floor($rating/2)*10) : intval((floor($rating/2)+.5)*10) ;
-	$ratingfl = str_pad($ratingfl, 2, "0", STR_PAD_LEFT);
-	$rating = "<img src='".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/images/ratings/rate". $ratingfl .".gif' alt='"._MD_MXDIR_RATINGC.number_format($rating, 2)."'/> ";
-	
-	$xoopsTpl->append('links', array('id' => $lid, 'cid' => $cid, 'url' => $url, 'rating' => $rating, 'lvlopts' => $lvlopts, 'title' => $myts->htmlSpecialChars($ltitle).$new.$pop, 'address' => $myts->htmlSpecialChars($address), 'address2' => $myts->htmlSpecialChars($address2), 'city' => $myts->htmlSpecialChars($city), 'state' => $myts->htmlSpecialChars($state), 'zip' => $myts->htmlSpecialChars($zip), 'country' => $myts->htmlSpecialChars($country), 'bizhrs' => $bizhrs, 'biznums' => $biznums, 'email' => $myts->htmlSpecialChars($email), 'category' => $path, 'logourl' => $myts->htmlSpecialChars($logourl), 'is_owner' => $is_owner, 'updated' => formatTimestamp($time,"m"), 'description' => $myts->displayTarea($description,0), 'adminlink' => $adminlink, 'hits' => $hits, 'votes' => $votestring, 'coupons' => $coupons, 'comments' => $comments, 'premium' => $premium, 'mail_subject' => rawurlencode(sprintf(_MD_MXDIR_INTRESTLINK,$xoopsConfig['sitename'])), 'mail_body' => rawurlencode(sprintf(_MD_MXDIR_INTLINKFOUND,$xoopsConfig['sitename']).':  '.XOOPS_URL.'/modules/' . $xoopsModule->getVar('dirname') . '/singlelink.php?cid='.$cid.'&lid='.$lid)));
+    $ratingfl = (($rating/2) - floor(($rating/2)) < 0.5) ? intval(floor($rating/2)*10) : intval((floor($rating/2)+.5)*10) ;
+    $ratingfl = str_pad($ratingfl, 2, "0", STR_PAD_LEFT);
+    $rating = "<img src='".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/images/ratings/rate". $ratingfl .".gif' alt='"._MD_MXDIR_RATINGC.number_format($rating, 2)."'/> ";
+    
+    $xoopsTpl->append('links', array('id' => $lid, 'cid' => $cid, 'url' => $url, 'rating' => $rating, 'lvlopts' => $lvlopts, 'title' => $myts->htmlSpecialChars($ltitle).$new.$pop, 'address' => $myts->htmlSpecialChars($address), 'address2' => $myts->htmlSpecialChars($address2), 'city' => $myts->htmlSpecialChars($city), 'state' => $myts->htmlSpecialChars($state), 'zip' => $myts->htmlSpecialChars($zip), 'country' => $myts->htmlSpecialChars($country), 'bizhrs' => $bizhrs, 'biznums' => $biznums, 'email' => $myts->htmlSpecialChars($email), 'category' => $path, 'logourl' => $myts->htmlSpecialChars($logourl), 'is_owner' => $is_owner, 'updated' => formatTimestamp($time,"m"), 'description' => $myts->displayTarea($description,0), 'adminlink' => $adminlink, 'hits' => $hits, 'votes' => $votestring, 'coupons' => $coupons, 'comments' => $comments, 'premium' => $premium, 'mail_subject' => rawurlencode(sprintf(_MD_MXDIR_INTRESTLINK,$xoopsConfig['sitename'])), 'mail_body' => rawurlencode(sprintf(_MD_MXDIR_INTLINKFOUND,$xoopsConfig['sitename']).':  '.XOOPS_URL.'/modules/' . $xoopsModule->getVar('dirname') . '/singlelink.php?cid='.$cid.'&lid='.$lid)));
 
 }
 
@@ -195,5 +195,3 @@ $xoopsTpl->assign('p4color',$xoopsModuleConfig['premium_listing4col']);
 $xoopsTpl->assign('p5color', $xoopsModuleConfig['premium_listing5col']);
 
 include XOOPS_ROOT_PATH.'/footer.php';
-
-?>

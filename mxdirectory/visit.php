@@ -39,13 +39,13 @@ $result = $xoopsDB->query("select url from ".$xoopsDB->prefix("xdir_links")." wh
 list($url) = $xoopsDB->fetchRow($result);
 
 if ( $xoopsModuleConfig['frame'] != "" ) {
-	header('Content-Type:text/html; charset='._CHARSET);
-	header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
-	header('Cache-Control: no-store, no-cache, must-revalidate');
-	header("Cache-Control: post-check=0, pre-check=0", false);
-	header("Pragma: no-cache");
-	echo "<html><head>
+    header('Content-Type:text/html; charset='._CHARSET);
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header("Cache-Control: post-check=0, pre-check=0", false);
+    header("Pragma: no-cache");
+    echo "<html><head>
 		<title>".$xoopsConfig['sitename']."</title>
 		</head>
 		<frameset rows='70px,100%' cols='*' border='0' frameborder='0' framespacing='0' >
@@ -53,8 +53,6 @@ if ( $xoopsModuleConfig['frame'] != "" ) {
 		<frame src='".$myts->oopsHtmlSpecialChars($url)."' frame name='main' scrolling='auto' target='Main'>
 		</frameset></html>";
 } else {
-	echo "<html><head><meta http-equiv=\"Refresh\" content=\"0; URL=".$myts->oopsHtmlSpecialChars($url)."\"></meta></head><body></body></html>";
+    echo "<html><head><meta http-equiv=\"Refresh\" content=\"0; URL=".$myts->oopsHtmlSpecialChars($url)."\"></meta></head><body></body></html>";
 }
 exit();
-
-?>

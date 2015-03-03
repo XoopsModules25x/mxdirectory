@@ -6,7 +6,7 @@ function adminmenu($currentoption=0, $breadcrumb = "")
     $tblColors[0]=$tblColors[1]=$tblColors[2]=$tblColors[3]=$tblColors[4]=$tblColors[5]=$tblColors[6]=$tblColors[7]=$tblColors[8]=$tblColors[9]=$tblColors;
     if($currentoption>=0) {
     $tblColors[$currentoption]='id=\'current\'';;
-	}
+    }
     if (file_exists(XOOPS_ROOT_PATH.'/modules/'.$xoopsModule->getVar('dirname').'/language/'.$xoopsConfig['language'].'/modinfo.php')) {
         include_once '../language/'.$xoopsConfig['language'].'/modinfo.php';
     }
@@ -69,6 +69,6 @@ function adminmenu($currentoption=0, $breadcrumb = "")
 function table_exists($tablename) {
     global $xoopsDB;
     $sql = "SELECT COUNT(*) FROM ".$xoopsDB->prefix($tablename);
+
     return $xoopsDB->query($sql);
 }
-?>

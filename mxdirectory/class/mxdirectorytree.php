@@ -242,9 +242,9 @@ class MxdirectoryTree
     /**
      * Enter description here...
      *
-     * @param int    $sel_id
-     * @param string $order
-     * @param array  $parray
+     * @param  int    $sel_id
+     * @param  string $order
+     * @param  array  $parray
      * @return array
      */
     public function getAllChild($sel_id = 0, $order = "", $parray = array())
@@ -270,10 +270,10 @@ class MxdirectoryTree
     /**
      * Enter description here...
      *
-     * @param int    $sel_id
-     * @param string $order
-     * @param array  $parray
-     * @param string $r_prefix
+     * @param  int    $sel_id
+     * @param  string $order
+     * @param  array  $parray
+     * @param  string $r_prefix
      * @return array
      */
     public function getChildTreeArray($sel_id = 0, $order = "", $parray = array(), $r_prefix = "")

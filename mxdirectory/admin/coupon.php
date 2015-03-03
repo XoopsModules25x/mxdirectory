@@ -59,60 +59,60 @@ $op = trim($_GET['op']);
 $criteria = new CriteriaCompo();
 $lid = isset($_GET['lid']) ? intval($_GET['lid']) : 0;
 
-	$sql = "SELECT lid, title FROM ".$xoopsDB->prefix("xdir_links")." order by title asc";
-	$result3 = $xoopsDB->query($sql);
+    $sql = "SELECT lid, title FROM ".$xoopsDB->prefix("xdir_links")." order by title asc";
+    $result3 = $xoopsDB->query($sql);
 
 switch ($op) {
     
-	case "menu":
-	
-		$cadmform = new XoopsThemeForm(_MI_MXDIR_ADMENU6, 'cadmform', '../savings.php', 'GET');
-		$select_link = (new XoopsFormSelect(_MD_MXDIR_LINKID , 'lid', $lid, 1, false));
-	
-		while (list($lid, $title) = $xoopsDB->fetchRow($result3) ) {
-		$select_link->addOption($lid, $title);
-			}	
-			
-		$cadmform->addElement($select_link);	
-		$wraptray = new XoopsFormElementTray('','');
+    case "menu":
+    
+        $cadmform = new XoopsThemeForm(_MI_MXDIR_ADMENU6, 'cadmform', '../savings.php', 'GET');
+        $select_link = (new XoopsFormSelect(_MD_MXDIR_LINKID , 'lid', $lid, 1, false));
+    
+        while (list($lid, $title) = $xoopsDB->fetchRow($result3) ) {
+        $select_link->addOption($lid, $title);
+            }
+            
+        $cadmform->addElement($select_link);
+        $wraptray = new XoopsFormElementTray('','');
 
-		$regtray = new XoopsFormElementTray('','');
-			$sbtn=new XoopsFormButton('', '', _MD_MXDIR_COUPMODADD, 'submit');
-			$sbtn->setExtra('onclick="document.cadmform.action =\'../addcoupon.php\'"');	
-		$regtray->addElement($sbtn);
+        $regtray = new XoopsFormElementTray('','');
+            $sbtn=new XoopsFormButton('', '', _MD_MXDIR_COUPMODADD, 'submit');
+            $sbtn->setExtra('onclick="document.cadmform.action =\'../addcoupon.php\'"');
+        $regtray->addElement($sbtn);
 
-		$deltray = new XoopsFormElementTray('','');
-			$dbtn=new XoopsFormButton('', '', _MD_MXDIR_COUPMOD, 'submit');
-			$dbtn->setExtra('onclick="document.cadmform.action =\'../savings.php\'"');	
-		$deltray->addElement($dbtn);
-		
-		$wraptray->addElement($regtray);
-		$wraptray->addElement($deltray);
+        $deltray = new XoopsFormElementTray('','');
+            $dbtn=new XoopsFormButton('', '', _MD_MXDIR_COUPMOD, 'submit');
+            $dbtn->setExtra('onclick="document.cadmform.action =\'../savings.php\'"');
+        $deltray->addElement($dbtn);
+        
+        $wraptray->addElement($regtray);
+        $wraptray->addElement($deltray);
 
-		$cadmform->addElement($wraptray);
-		$cadmform->setExtra("onsubmit=\" this.form.elements.lid.value=this.form.elements._GET[lid].value\"");
-		$cadmform->display();
-	
-		
-		
-		$cmform = new XoopsThemeForm(_MI_MXDIR_ADMENU6, 'cmform', $_SERVER['PHP_SELF'], 'GET');
-		$cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU11, " <a href=coupon.php?op=noexp> No Expiration Coupons</a>"));
-		$cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU8, "<a href=coupon.php?op=future> Future Coupons</a>"));
-		$cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU7, " <a href=coupon.php?op=expired> Expired Coupons</a>"));
-		$cmform->display();
-		break;
-	
+        $cadmform->addElement($wraptray);
+        $cadmform->setExtra("onsubmit=\" this.form.elements.lid.value=this.form.elements._GET[lid].value\"");
+        $cadmform->display();
+    
+        
+        
+        $cmform = new XoopsThemeForm(_MI_MXDIR_ADMENU6, 'cmform', $_SERVER['PHP_SELF'], 'GET');
+        $cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU11, " <a href=coupon.php?op=noexp> No Expiration Coupons</a>"));
+        $cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU8, "<a href=coupon.php?op=future> Future Coupons</a>"));
+        $cmform->addElement(new XoopsFormLabel(_MI_MXDIR_ADMENU7, " <a href=coupon.php?op=expired> Expired Coupons</a>"));
+        $cmform->display();
+        break;
+    
     case 'expired':
         //$operators = '( < ( != 0 ))';
-		$criteria->add(new Criteria('expire', time(), '<'));
-   		$criteria->add(new Criteria('expire', '0', '!='));
+        $criteria->add(new Criteria('expire', time(), '<'));
+        $criteria->add(new Criteria('expire', '0', '!='));
     break;
     
-	case 'noexp':
-		$criteria->add(new Criteria('expire', '0', '='));	
+    case 'noexp':
+        $criteria->add(new Criteria('expire', '0', '='));
     break;
-	
-	case 'future':
+    
+    case 'future':
         $criteria->add(new Criteria('publish', time(), '>'));
     break;
 }
@@ -121,7 +121,7 @@ $coupons = $coupon_handler->prepare2show($coupons);
 $output = "<table>";
 foreach ($coupons as $catid => $category) {
     $output .= '<tr>
-            <th colspan="2">				
+            <th colspan="2">
 				'.$category['catTitle'].';
        </th>
         </tr>';
@@ -161,4 +161,3 @@ echo "<div><table style=\"width: 100%; text-align: center; vertical-align: middl
 
 xoops_cp_footer();
 echo "<p class=\"mytext\">&nbsp;</p>";
-?>

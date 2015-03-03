@@ -41,13 +41,13 @@ include XOOPS_ROOT_PATH."/header.php";
 //generates top 10 charts by rating and hits for each main category
 
 if ( isset($_GET['rate']) ) {
-	$sort = _MD_MXDIR_RATING;
-	$sortDB = "rating";
-	$rateqlfy = " and (votes > 0) ";
+    $sort = _MD_MXDIR_RATING;
+    $sortDB = "rating";
+    $rateqlfy = " and (votes > 0) ";
 }else{
-	$sort = _MD_MXDIR_HITS;
-	$sortDB = "hits";
-	$rateqlfy = "";
+    $sort = _MD_MXDIR_HITS;
+    $sortDB = "hits";
+    $rateqlfy = "";
 }
 $xoopsTpl->assign('lang_sortby' ,$sort);
 $xoopsTpl->assign('lang_rank' , _MD_MXDIR_RANK);
@@ -62,32 +62,32 @@ $e = 0;
 $rankings = array();
 while(list($cid, $ctitle)=$xoopsDB->fetchRow($result)){
 //	$rankings[$e]['title'] = sprintf(_MD_MXDIR_TOP10, $myts->htmlSpecialChars($ctitle));
-	$query = "select lid, cid, title, hits, rating, votes from ".$xoopsDB->prefix("xdir_links")." where status>0".$rateqlfy." and (cid=$cid";
-	// get all child cat ids for a given cat id
-	$arr=$mytree->getAllChildId($cid);
-	$size = count($arr);
-	for($i=0;$i<$size;$i++){
-		$query .= " or cid=".$arr[$i]."";
-	}
-	$query .= ") order by ".$sortDB." DESC";
-	$result2 = $xoopsDB->query($query,10,0);
-	$res2_rows = $xoopsDB->getRowsNum($result2);
-	if ( $res2_rows > 0 ) {
-	  $rank = 1;
-	  while(list($lid,$lcid,$ltitle,$hits,$rating,$votes)=$xoopsDB->fetchRow($result2)){
-		  $catpath = $mytree->getPathFromId($lcid, "title");
-  		$catpath= substr($catpath, 1);
-	  	$catpath = str_replace("/"," <span class='fg2'>&raquo;</span> ",$catpath);
-		  $ratingfl = (($rating/2) - floor(($rating/2)) < 0.5) ? intval(floor($rating/2)*10) : intval((floor($rating/2)+.5)*10) ;
-  		$ratingfl = str_pad($ratingfl, 2, "0", STR_PAD_LEFT);
-	  	$rating = "<img src='".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/images/ratings/rate". $ratingfl .".gif' alt='"._MD_MXDIR_RATINGC.number_format($rating, 2)."'> ";
+    $query = "select lid, cid, title, hits, rating, votes from ".$xoopsDB->prefix("xdir_links")." where status>0".$rateqlfy." and (cid=$cid";
+    // get all child cat ids for a given cat id
+    $arr=$mytree->getAllChildId($cid);
+    $size = count($arr);
+    for($i=0;$i<$size;$i++){
+        $query .= " or cid=".$arr[$i]."";
+    }
+    $query .= ") order by ".$sortDB." DESC";
+    $result2 = $xoopsDB->query($query,10,0);
+    $res2_rows = $xoopsDB->getRowsNum($result2);
+    if ( $res2_rows > 0 ) {
+      $rank = 1;
+      while(list($lid,$lcid,$ltitle,$hits,$rating,$votes)=$xoopsDB->fetchRow($result2)){
+          $catpath = $mytree->getPathFromId($lcid, "title");
+        $catpath= substr($catpath, 1);
+        $catpath = str_replace("/"," <span class='fg2'>&raquo;</span> ",$catpath);
+          $ratingfl = (($rating/2) - floor(($rating/2)) < 0.5) ? intval(floor($rating/2)*10) : intval((floor($rating/2)+.5)*10) ;
+        $ratingfl = str_pad($ratingfl, 2, "0", STR_PAD_LEFT);
+        $rating = "<img src='".XOOPS_URL."/modules/" . $xoopsModule->getVar('dirname') . "/images/ratings/rate". $ratingfl .".gif' alt='"._MD_MXDIR_RATINGC.number_format($rating, 2)."'> ";
 
 //		  $rankings[$e]['links'][] = array('id' => $lid, 'cid' => $cid, 'rank' => $rank, 'title' => $myts->htmlSpecialChars($ltitle), 'category' => $catpath, 'hits' => $hits, 'rating' => number_format($rating, 2), 'votes' => $votes);
-  		$rankings[$e]['links'][] = array('id' => $lid, 'cid' => $cid, 'rank' => $rank, 'title' => $myts->htmlSpecialChars($ltitle), 'category' => $catpath, 'hits' => $hits, 'rating' => $rating, 'votes' => $votes);
-	  	$rank++;
-  	}
-  	$rankings[$e]['title'] = sprintf(_MD_MXDIR_TOP10, $myts->htmlSpecialChars($ctitle));
-	}
+        $rankings[$e]['links'][] = array('id' => $lid, 'cid' => $cid, 'rank' => $rank, 'title' => $myts->htmlSpecialChars($ltitle), 'category' => $catpath, 'hits' => $hits, 'rating' => $rating, 'votes' => $votes);
+        $rank++;
+    }
+    $rankings[$e]['title'] = sprintf(_MD_MXDIR_TOP10, $myts->htmlSpecialChars($ctitle));
+    }
   $e++;
 }
 $xoopsTpl->assign('rankings', $rankings);
@@ -95,4 +95,3 @@ $xoopsTpl->assign('rankings', $rankings);
 $smartydir = $xoopsModule->getVar('dirname');
 $xoopsTpl->assign('smartydir', $smartydir);
 include XOOPS_ROOT_PATH.'/footer.php';
-?>

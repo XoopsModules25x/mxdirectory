@@ -32,47 +32,47 @@
 
 function xdir_notify_iteminfo($category, $item_id)
 {
-	global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
-	$mydirname = (basename ( dirname ( dirname( __FILE__ ) ) , "a" ) ) ;
+    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    $mydirname = (basename ( dirname ( dirname( __FILE__ ) ) , "a" ) ) ;
 
-	if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != $mydirname) {	
-		$module_handler =& xoops_gethandler('module');
-		$module =& $module_handler->getByDirname($mydirname);
-		$config_handler =& xoops_gethandler('config');
-		$config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
-	} else {
-		$module =& $xoopsModule;
-		$config =& $xoopsModuleConfig;
-	}
+    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != $mydirname) {
+        $module_handler =& xoops_gethandler('module');
+        $module =& $module_handler->getByDirname($mydirname);
+        $config_handler =& xoops_gethandler('config');
+        $config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
+    } else {
+        $module =& $xoopsModule;
+        $config =& $xoopsModuleConfig;
+    }
 
-	//include_once XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/main.php';
+    //include_once XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/main.php';
 
-	global $xoopsDB;
-	$item = array();
-	
-	switch ($category) {
-		case 'global':
-			$item['name'] = '';
-			$item['url'] = '';
-			break;
-		case 'category':
-			// Assume we have a valid category id
-			$sql = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid = '.$item_id;
-			$result = $xoopsDB->query($sql); // TODO: error check
-			$result_array = $xoopsDB->fetchArray($result);
-			$item['name'] = $result_array['title'];
-			$item['url'] = XOOPS_URL . '/modules/' . $mydirname . '/viewcat.php?cid=' . $item_id;
-			break;
-		case 'link':
-			// Assume we have a valid link id
-			$sql = 'SELECT cid,title FROM '.$xoopsDB->prefix('xdir_links') . ' WHERE lid = ' . $item_id;
-			$result = $xoopsDB->query($sql); // TODO: error check
-			$result_array = $xoopsDB->fetchArray($result);
-			$item['name'] = $result_array['title'];
-			$item['url'] = XOOPS_URL . '/modules/' . $mydirname . '/singlelink.php?cid=' . $result_array['cid'] . '&amp;lid=' . $item_id;
-			break;
-		default:
-	}
-	return $item;
+    global $xoopsDB;
+    $item = array();
+    
+    switch ($category) {
+        case 'global':
+            $item['name'] = '';
+            $item['url'] = '';
+            break;
+        case 'category':
+            // Assume we have a valid category id
+            $sql = 'SELECT title FROM ' . $xoopsDB->prefix('xdir_cat') . ' WHERE cid = '.$item_id;
+            $result = $xoopsDB->query($sql); // TODO: error check
+            $result_array = $xoopsDB->fetchArray($result);
+            $item['name'] = $result_array['title'];
+            $item['url'] = XOOPS_URL . '/modules/' . $mydirname . '/viewcat.php?cid=' . $item_id;
+            break;
+        case 'link':
+            // Assume we have a valid link id
+            $sql = 'SELECT cid,title FROM '.$xoopsDB->prefix('xdir_links') . ' WHERE lid = ' . $item_id;
+            $result = $xoopsDB->query($sql); // TODO: error check
+            $result_array = $xoopsDB->fetchArray($result);
+            $item['name'] = $result_array['title'];
+            $item['url'] = XOOPS_URL . '/modules/' . $mydirname . '/singlelink.php?cid=' . $result_array['cid'] . '&amp;lid=' . $item_id;
+            break;
+        default:
+    }
+
+    return $item;
 }
-?>

@@ -159,4 +159,3 @@ $rssform->addElement($regtray);
 $rssform->display();
 
 include_once (XOOPS_ROOT_PATH."/footer.php");
-?>

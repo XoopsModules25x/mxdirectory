@@ -37,7 +37,6 @@ define("_MD_MXDIR_ATTENTION","<font style=\"font-weight: bold;\">Attention Busin
 define("_MD_MXDIR_SPONSLISTHEAD","Sponsored Listings");
 define("_MD_MXDIR_ALLLISTHEAD","All Listings");
 
-
 define("_MD_MXDIR_POPULARITYLTOM","Popularity (Least to Most Hits)");
 define("_MD_MXDIR_POPULARITYMTOL","Popularity (Most to Least Hits)");
 define("_MD_MXDIR_TITLEATOZ","Business Name (A to Z)");

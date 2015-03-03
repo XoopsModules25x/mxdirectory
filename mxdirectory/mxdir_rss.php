@@ -219,4 +219,3 @@ $rsstpl->display('db:xdir_rss.html',$pgcacheid);
 if (isset($enctype) && !($enctype === false)) {
   mb_internal_encoding($enctype);
 }
-?>

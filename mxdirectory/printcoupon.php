@@ -49,8 +49,7 @@ function PrintPage($coupid)
 //    $xoopsTpl->template_dir = XOOPS_ROOT_PATH."/modules/".$xoopsModule->dirname();
     $xoopsTpl->display('db:xdir_print_savings.html');
 }
-	//Smarty directory autodetect
-	$smartydir = $mydirname;
-	$xoopsTpl->assign('smartydir', $smartydir);
+    //Smarty directory autodetect
+    $smartydir = $mydirname;
+    $xoopsTpl->assign('smartydir', $smartydir);
 PrintPage($coupid);
-?>

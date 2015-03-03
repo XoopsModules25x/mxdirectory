@@ -70,4 +70,3 @@ echo "</form>";
 echo "</td></tr></table></div>";
 
 xoops_cp_footer();
-?>

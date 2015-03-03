@@ -31,7 +31,7 @@
 // ------------------------------------------------------------------------- //
 /******************************************************************************
  * Function: b_xdir_categories
- * Input   : $options[0] = Include Subcategories (1=yes, 0=no) 
+ * Input   : $options[0] = Include Subcategories (1=yes, 0=no)
  *           $options[1] = Horizontal Menu (1=yes, 0=no)
  * Output  : Returns the links to categories
  ******************************************************************************/
@@ -46,14 +46,14 @@ function b_xdir_categories($options) {
   global $xoopsDB, $xoopModuleConfig;
   $mydirname = basename ( dirname( dirname( __FILE__ ) ) ) ;
   $mytree = new MxdirectoryTree($xoopsDB->prefix("xdir_cat"),"cid","pid");
-	$block = array();
-	$myts =& MyTextSanitizer::getInstance();
+    $block = array();
+    $myts =& MyTextSanitizer::getInstance();
 
-	$block[] = array('cid'=>0, 'prefix'=>'', 'title'=>strtoupper(_MB_MXDIR_MAIN), 'mydirname'=>$mydirname, 'menutype'=>$options[1]);
+    $block[] = array('cid'=>0, 'prefix'=>'', 'title'=>strtoupper(_MB_MXDIR_MAIN), 'mydirname'=>$mydirname, 'menutype'=>$options[1]);
 
-	if ($options[0] == 1) {
+    if ($options[0] == 1) {
   $tree = $mytree->getChildTreeArray(0,"title ASC");
-  foreach ($tree as $branch ) { 
+  foreach ($tree as $branch ) {
     $branch['prefix'] = substr($branch['prefix'], 0, -1);
     $branch['prefix'] = str_replace(".","--",$branch['prefix']);
     $block[] = array('cid'=>$branch['cid'], 'prefix'=>$branch['prefix'], 'title'=>$branch['title'], 'mydirname'=>$mydirname, 'menutype'=>$options[1]);
@@ -63,14 +63,14 @@ function b_xdir_categories($options) {
   } else {
     $result = $xoopsDB->query("SELECT cid, title FROM ".$xoopsDB->prefix("xdir_cat")." WHERE pid=0 ORDER BY title ASC");
     $numrows = $xoopsDB->getRowsNum($result);
-		while(list($cid, $title) = $xoopsDB->fetchRow($result)) {
+        while(list($cid, $title) = $xoopsDB->fetchRow($result)) {
       $block[] = array('cid'=>$cid, 'prefix'=>'', 'title'=>$title, 'mydirname'=>$mydirname, 'menutype'=>$options[1]);
     }
   }
 //  if (empty($block)) {
 //    $block[] = array('cid'=>0, 'prefix'=>'', 'title'=>strtoupper(_MD_MXDIR_MAIN), 'mydirname'=>$mydirname);
 //  }
-	return $block;
+    return $block;
 }
 
 function b_xdir_cat_edit($options) {
@@ -84,15 +84,14 @@ function b_xdir_cat_edit($options) {
   $icychk = ($options[0] == 1) ? 'checked' : '' ;
   $icnchk = ($options[0] == 1) ? '' : 'checked' ;
   $form = "<span style=\"text-align: left;\"><table><tr><td width='200'>"._MB_MXDIR_INCCATS."</td><td>";
-	$form .= "<input type='radio' $icychk name='options[0]' value='1' /> "._YES." ";
-	$form .= "<input type='radio' $icnchk name='options[0]' value='0' /> "._NO."</td></tr>";
+    $form .= "<input type='radio' $icychk name='options[0]' value='1' /> "._YES." ";
+    $form .= "<input type='radio' $icnchk name='options[0]' value='0' /> "._NO."</td></tr>";
 
   $hmychk = ($options[0] == 1) ? 'checked' : '' ;
   $hmnchk = ($options[0] == 1) ? '' : 'checked' ;
   $form .= "<tr><td width='200'>"._MB_MXDIR_HORIZCATS."</td><td>";
   $form .= "<input type='radio' $hmychk name='options[1]' value='1' /> "._YES." ";
-	$form .= "<input type='radio' $hmnchk name='options[1]' value='0' /> "._NO."</td></tr></table></span>";
+    $form .= "<input type='radio' $hmnchk name='options[1]' value='0' /> "._NO."</td></tr></table></span>";
 
-	return $form;
+    return $form;
 }
-?>

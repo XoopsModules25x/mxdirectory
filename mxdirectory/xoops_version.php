@@ -30,7 +30,7 @@
 //	the mylinks module as the foundation.									 //
 // ------------------------------------------------------------------------- //
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');
+    die('XOOPS root path not defined');
 }
 //$mydirname = $xoopsModule->getVar('dirname')
 //2.2.x Change for dir discovery
@@ -236,7 +236,6 @@ $modversion['config'][1]['default'] = 100;
 // required and valid for 'select' or 'select_multi' formtype option only
 // language constants can be used for both array keys and values
 $modversion['config'][1]['options'] = array('5' => 5, '10' => 10, '50' => 50, '100' => 100, '200' => 200, '500' => 500, '1000' => 1000);
-
 
 $modversion['config'][2]['name'] = 'newlinks';
 $modversion['config'][2]['title'] = '_MI_MXDIR_NEWLINKS';
@@ -582,6 +581,5 @@ $modversion['notification']['event'][8]['mail_subject'] = _MI_MXDIR_LINK_APPROVE
 
 // On Update
 if( ! empty( $_POST['fct'] ) && ! empty( $_POST['op'] ) && $_POST['fct'] == 'modulesadmin' && $_POST['op'] == 'update_ok' && $_POST['dirname'] == $modversion['dirname'] ) {
-	include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
+    include dirname( __FILE__ ) . "/include/onupdate.inc.php" ;
 }
-?>

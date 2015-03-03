@@ -24,7 +24,7 @@ include("header.php")
         <td >
           <div id="content">
             
-            <div id="content"> 
+            <div id="content">
                 <div align="center" class="style1" style="padding:10px;">
                   <h1>Our Directory Page Listings and Rates</h1>
                 </div>
@@ -123,7 +123,7 @@ include("header.php")
         </td>
       </tr>
     </tbody>
-  </table>	
+  </table>
 	
   
   <div id="content" style="padding-top:25px;"> <font size="3"><b>Premium Services</b></font><br />
@@ -145,7 +145,7 @@ include("header.php")
     Our business directory gets hits from visitors looking for the types of services
     your company offers. Our Premium Services are designed to maximize the visibility
     and effectiveness of your business listing. Our Directory Plans and rates
-    are below.						
+    are below.
 						</td>
                         <th height="27" colspan="2" align="middle" valign="top"  id="maincontent1" style="font-size:125%;"><b> <font >Basic</font></b></th>
                         <th colspan="3" align="middle" valign="top" id="maincontent1"  style="font-size:125%;"><b> <font>Premium
@@ -319,9 +319,9 @@ include("header.php")
           <td></td>
         </tr>
       </tbody>
-    </table>   						  
+    </table>
 	
-	<table><tr><td style="height:20px;"> </td></tr></table>	
+	<table><tr><td style="height:20px;"> </td></tr></table>
 	
 	<table class="outer" ><tr  class="odd"><td>
     <p><strong>Map Link</strong><br />
@@ -352,10 +352,10 @@ include("header.php")
 
 </td></tr></table>
 
-	<table><tr><td style="height:20px;"> </td></tr></table>	
+	<table><tr><td style="height:20px;"> </td></tr></table>
 	
 			
-    <b><h2>Example Listings:</h2></b><br />	 
+    <b><h2>Example Listings:</h2></b><br />
 	
     <table id="table5" cellpadding="10" cellspacing="1" width="100%" class="outer">
       <tbody>
@@ -635,4 +635,3 @@ include("header.php")
 <?php
 include XOOPS_ROOT_PATH.'/footer.php';
 ?>
-
