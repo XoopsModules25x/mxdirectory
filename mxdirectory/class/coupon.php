@@ -34,34 +34,34 @@ $mydirname = basename (dirname ( dirname( __FILE__ ) ) );
 
 class Coupon extends XoopsObject {
     //Constructor
-    /** 
+    /**
     * @param mixed $coupid int for coupon id or array with name->value pairs of properties
     * @return object {@link Coupon}
     */
-	function Coupon($coupid = false) {
-		global $mydirname;
-		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
+    function Coupon($coupid = false) {
+        global $mydirname;
+        $this->db = XoopsDatabaseFactory::getDatabaseConnection();
         $this->initVar('couponid', XOBJ_DTYPE_INT, null, false);
         $this->initVar('lid', XOBJ_DTYPE_INT, null, true);
-		$this->initVar('description', XOBJ_DTYPE_TXTAREA);
-		$this->initVar('image', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('publish', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('expire', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('heading', XOBJ_DTYPE_TXTBOX);
-		$this->initVar('counter', XOBJ_DTYPE_INT, 0, false);
-		$this->initVar('lbr', XOBJ_DTYPE_INT, 0, false);
-		if ($coupid != false) {
+        $this->initVar('description', XOBJ_DTYPE_TXTAREA);
+        $this->initVar('image', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('publish', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('expire', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('heading', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('counter', XOBJ_DTYPE_INT, 0, false);
+        $this->initVar('lbr', XOBJ_DTYPE_INT, 0, false);
+        if ($coupid != false) {
             global $mydirname;
-			if (is_array($coupid)) {
+            if (is_array($coupid)) {
                 $this->assignVars($coupid);
       } else {
-				global $mydirname;
-				$coupon_handler = xoops_getmodulehandler('coupon', $mydirname);
-				$coupon =& $coupon_handler->get($coupid);
-				foreach ($coupon->vars as $k => $v) {
-				  $this->assignVar($k, $v['value']);
-				}
-				unset($coupon);
+                global $mydirname;
+                $coupon_handler = xoops_getmodulehandler('coupon', $mydirname);
+                $coupon =& $coupon_handler->get($coupid);
+                foreach ($coupon->vars as $k => $v) {
+                  $this->assignVar($k, $v['value']);
+                }
+                unset($coupon);
       }
     }
   }
@@ -71,6 +71,7 @@ class Coupon extends XoopsObject {
     foreach ($this->vars as $k => $v) {
       $ret[$k] = $v['value'];
     }
+
     return $ret;
   }
 }
@@ -79,8 +80,8 @@ class Coupon extends XoopsObject {
 class XdirectoryCouponHandler extends XoopsObjectHandler {
     /**
      * create a new coupon object
-     * 
-     * @param bool $isNew flag the new objects as "new"?
+     *
+     * @param  bool   $isNew flag the new objects as "new"?
      * @return object {@link Coupon}
      */
     function &create($isNew = true)
@@ -89,12 +90,13 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         if ($isNew) {
             $coupon->setNew();
         }
+
         return $coupon;
-    } 
+    }
     /**
      * retrieve a coupon
-     * 
-     * @param int $coupid ID of the coupon
+     *
+     * @param  int   $coupid ID of the coupon
      * @return mixed reference to the {@link Coupon} object, FALSE if failed
      */
     function &get($coupid = false) {
@@ -109,15 +111,17 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
             }
             $coupon =& $this->create(false);
             $coupon->assignVars($this->db->fetchArray($result));
+
             return $coupon;
         }
+
         return false;
     }
     
     /**
     * Save coupon in database
     * @param object $coupon reference to the {@link Coupon} object
-    * @param bool $force 
+    * @param bool $force
     * @return bool FALSE if failed, TRUE if already present and unchanged or successful
     */
     function insert(&$coupon) {
@@ -134,8 +138,8 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
             ${$k} = $v;
         }
         if ($coupon->_isNew) {
-            $sql = "INSERT INTO ".$this->db->prefix("xdir_coupon")." 
-                    (lid, description, image, publish, expire, heading, lbr) VALUES 
+            $sql = "INSERT INTO ".$this->db->prefix("xdir_coupon")."
+                    (lid, description, image, publish, expire, heading, lbr) VALUES
                     ($lid, ".$this->db->quoteString($description).", ".$this->db->quoteString($image).", $publish, $expire, ".$this->db->quoteString($heading).", $lbr)";
         }
         else {
@@ -155,6 +159,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
             $coupon->setVar('couponid', $this->db->getInsertId());
             $coupon->_isNew = false;
         }
+
         return true;
     }
     
@@ -171,6 +176,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         if (!$this->db->query($sql)) {
             return false;
         }
+
         return true;
     }
     
@@ -186,12 +192,12 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
     function &getObjects($criteria = null, $as_objects = true, $id_as_key = false) {
         $ret = array();
         $limit = $start = 0;
-        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description, coup.image, coup.lbr, coup.publish, coup.expire 
+        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description, coup.image, coup.lbr, coup.publish, coup.expire
                 FROM '.$this->db->prefix('xdir_coupon').' coup, '.$this->db->prefix('xdir_cat').' cat, '.$this->db->prefix('xdir_links').' l
                 WHERE cat.cid=l.cid AND coup.lid=l.lid AND ';
         if (isset($criteria) && is_subclass_of($criteria, 'criteriaelement')) {
             
-			$sql .= ' '.$criteria->render();
+            $sql .= ' '.$criteria->render();
             if ($criteria->getSort() != '') {
                 $sql .= ' ORDER BY '.$criteria->getSort().' '.$criteria->getOrder();
             }
@@ -203,7 +209,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
             return $ret;
         }
         while ($myrow = $this->db->fetchArray($result)) {
-            if ($as_objects) {            
+            if ($as_objects) {
                 $coupon = new Coupon();
                 $coupon->assignVars($myrow);
                 if (!$id_as_key) {
@@ -217,6 +223,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
                 $ret[] = $myrow;
             }
         }
+
         return $ret;
     }
     
@@ -234,11 +241,11 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         $ret = array();
         $limit = $start = 0;
         $now = time();
-        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description, coup.image, coup.lbr, coup.publish, coup.expire 
+        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description, coup.image, coup.lbr, coup.publish, coup.expire
                 FROM '.$this->db->prefix('xdir_coupon').' coup, '.$this->db->prefix('xdir_cat').' cat, '.$this->db->prefix('xdir_links').' l';
         $sql .= ' WHERE coup.lid = l.lid AND l.cid = cat.cid AND coup.publish < '.$now.' AND (coup.expire = 0 OR coup.expire > '.$now.')';
         $catid = intval($catid);
-        if ($catid > 0) {            
+        if ($catid > 0) {
             $sql .= " AND cat.cid = $catid";
         }
         $sql .= ' ORDER BY cat.title ASC, l.title ASC';
@@ -249,6 +256,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[] = $myrow;
         }
+
         return $ret;
     }
   
@@ -256,7 +264,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
 //        $ret = array();
 ////        $limit = $start = 0;
 //        $now = time();
-//        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.cidalt1, l.cidalt2, l.cidalt3, l.cidalt4, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, l.premium, coup.description, coup.image, coup.lbr, coup.publish, coup.expire 
+//        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.cidalt1, l.cidalt2, l.cidalt3, l.cidalt4, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, l.premium, coup.description, coup.image, coup.lbr, coup.publish, coup.expire
 //                FROM '.$this->db->prefix('xdir_coupon').' coup, '.$this->db->prefix('xdir_cat').' cat, '.$this->db->prefix('xdir_links').' l';
 //        $sql .= ' WHERE coup.lid = l.lid AND l.cid = cat.cid AND coup.publish < '.$now.' AND (coup.expire = 0 OR coup.expire > '.$now.')';
 //        $cat_term = "";
@@ -311,14 +319,14 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
 //        $limit = $start = 0;
         $now = time();
         $lid = intval($lid);
-		    $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.cidalt1, l.cidalt2, l.cidalt3, l.cidalt4, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, l.premium, coup.description, coup.image, coup.lbr, coup.publish, coup.expire 
+            $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.cidalt1, l.cidalt2, l.cidalt3, l.cidalt4, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, l.premium, coup.description, coup.image, coup.lbr, coup.publish, coup.expire
                 FROM '.$this->db->prefix('xdir_coupon').' coup, '.$this->db->prefix('xdir_cat').' cat, '.$this->db->prefix('xdir_links').' l';
         $sql .= ' WHERE coup.lid = l.lid AND coup.lid='.$lid;
         $sql .= ' AND (l.cid = cat.cid OR l.cidalt1 = cat.cid OR l.cidalt2 = cat.cid OR l.cidalt3 = cat.cid OR l.cidalt4 = cat.cid)';
         $sql .= ' AND coup.publish < '.$now.' AND (coup.expire = 0 OR coup.expire > '.$now.')';
         $sql .= ' ORDER BY cat.title ASC, l.title ASC';
         $result = $this->db->query($sql, $limit, $start);
-	    if (!$result) {
+        if (!$result) {
         return $ret;
       }
       while ($myrow = $this->db->fetchArray($result)) {
@@ -330,10 +338,11 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
           $ret[] = $myrow;
         }
       }
+
       return $ret;
     }
     
-    /** 
+    /**
     * Returns number of coupons for a listing
     *
     * @param int $lid listing id
@@ -344,11 +353,12 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         $ret = 0;
         $now = time();
         $lid = intval($lid);
-		$sql = "SELECT count(*) FROM ".$this->db->prefix("xdir_coupon")." WHERE lid=".$lid.' AND publish < '.$now.' AND (expire = 0 OR expire > '.$now.')';
+        $sql = "SELECT count(*) FROM ".$this->db->prefix("xdir_coupon")." WHERE lid=".$lid.' AND publish < '.$now.' AND (expire = 0 OR expire > '.$now.')';
         if (!$result = $this->db->query($sql)) {
             return false;
         }
         list($ret) = $this->db->fetchRow($result);
+
         return $ret;
     }
     
@@ -364,7 +374,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         $limit = $start = 0;
         $now = time();
         $coupid = intval($coupid);
-        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description,  coup.image, coup.lbr, coup.publish, coup.expire 
+        $sql = 'SELECT cat.title AS catTitle, l.title AS linkTitle, coup.couponid, coup.heading, coup.counter, l.lid, l.cid, l.address, l.address2, l.city, l.zip, l.state, l.country, l.phone, l.fax, l.email, l.url, l.logourl, coup.description,  coup.image, coup.lbr, coup.publish, coup.expire
                 FROM '.$this->db->prefix('xdir_coupon').' coup, '.$this->db->prefix('xdir_cat').' cat, '.$this->db->prefix('xdir_links').' l';
         $sql .= ' WHERE coup.lid = l.lid AND coup.couponid='.$coupid;
         $result = $this->db->query($sql, $limit, $start);
@@ -374,10 +384,11 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
         while ($myrow = $this->db->fetchArray($result)) {
             $ret[] = $myrow;
         }
+
         return $ret;
     }
     
-    /** 
+    /**
     * Prepares rows from getByLink and getByCategory to be displayed
     *
     * @param array $array rows to be prepared
@@ -385,7 +396,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
     * @return array
     */
     function prepare2show($array, $justclean=false) {
-  		global $mydirname;
+        global $mydirname;
       $myts =& MyTextSanitizer::getInstance();
         $ret = array();
         foreach ($array as $key => $myrow) {
@@ -426,6 +437,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
               $ret[$myrow['cid']]['cid'] = $myrow['cid'];
             }
         }
+
         return $ret;
     }
     
@@ -439,7 +451,7 @@ class XdirectoryCouponHandler extends XoopsObjectHandler {
     function increment($couponid) {
       $couponid = intval($couponid);
         $sql = 'UPDATE '.$this->db->prefix('xdir_coupon').' SET counter=counter+1 WHERE couponid='.$couponid;
+
         return $this->db->queryF($sql);
     }
 }
-?>

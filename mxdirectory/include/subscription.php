@@ -23,8 +23,6 @@ define('_MI_MXDIR_PREMIUM3_DNAME_GROUP', '4');
 define('_MI_MXDIR_PREMIUM4_DNAME_GROUP', '5');
 define('_MI_MXDIR_PREMIUM5_DNAME_GROUP', '7');
 
-
-
 //$uid=$submitter
 function UpdateListingType($lid, $uid)
 {
@@ -33,32 +31,29 @@ $submitterGroups = $thisUser->getGroups();
 echo "-1-<P>";print_r($submitterGroups);
 $PremiumID =0;
 
-
 if ( in_array(_MI_MXDIR_PREMIUM5_DNAME_GROUP, $submitterGroups ) )
-{ 
-	$PremiumID = 5; 
+{
+    $PremiumID = 5;
 }elseif ( in_array(_MI_MXDIR_PREMIUM4_DNAME_GROUP, $submitterGroups ) ) {
-	$PremiumID = 4; 
+    $PremiumID = 4;
 }
 elseif ( in_array(_MI_MXDIR_PREMIUM3_DNAME_GROUP, $verGrupos) ) {
-	$PremiumID = 3; 
+    $PremiumID = 3;
 }
 elseif ( in_array(_MI_MXDIR_PREMIUM2_DNAME_GROUP, $verGrupos) ) {
-	$PremiumID = 2; 
+    $PremiumID = 2;
 }
 elseif ( in_array(_MI_MXDIR_PREMIUM1_DNAME_GROUP, $verGrupos) ) {
-	$PremiumID = 1; 
+    $PremiumID = 1;
 }
 elseif ( in_array(_MI_MXDIR_PREMIUM0_DNAME_GROUP, $verGrupos) ) {
-	$PremiumID = 0; 
+    $PremiumID = 0;
 }
 
-
-	global $xoopsDB;
+    global $xoopsDB;
             $sql = "UPDATE ".$this->db->prefix("xdir_links")." SET
                     premium= ".$PremiumID."  WHERE lid = ".$lid;
-	$result=$xoopsDB->queryF($sql);
-	return $result;
-}
+    $result=$xoopsDB->queryF($sql);
 
-?>
+    return $result;
+}

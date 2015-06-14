@@ -225,4 +225,3 @@ $xoopsTpl->clear_cache('xdir_mylistings.html');
 
 include XOOPS_ROOT_PATH.'/include/comment_view.php';
 include XOOPS_ROOT_PATH.'/footer.php';
-?>

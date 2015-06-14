@@ -32,29 +32,28 @@ $gd = isset($_GET['gd']) ? intval($_GET['gd']) : 0 ;
 
 $code= mx_calc_security($random_num);
 
-$min_font_sz			= 3;		// minimum font size allowed
-$max_font_sz 			= 5;		// maximum font size allowed
-$img_height_mult	= 1.5;	// height of image - multiplier * font height 
-$img_extend				= 2;		// number of additional chars to extend image
+$min_font_sz            = 3;        // minimum font size allowed
+$max_font_sz            = 5;        // maximum font size allowed
+$img_height_mult    = 1.5;    // height of image - multiplier * font height
+$img_extend                = 2;        // number of additional chars to extend image
 
-$str_start_pos		= $img_extend * 0.25;	// horiz. center string in image
+$str_start_pos        = $img_extend * 0.25;    // horiz. center string in image
 
 //
 $img_width = imagefontwidth($max_font_sz) * (strlen($code) + intval($img_extend)) ;
 $img_height = intval(imagefontheight($max_font_sz) * $img_height_mult) ;
 $xoff = imagefontwidth(intval($max_font_sz) * $str_start_pos) ;
 
-	switch ($gd) {
-		case 2:
-			$img = imagecreatetruecolor($img_width,$img_height);
-			break;
-		case 1:
-			$img = imagecreate($img_width,$img_height);
-			break;
-		default:
-			die();
-	}
-
+    switch ($gd) {
+        case 2:
+            $img = imagecreatetruecolor($img_width,$img_height);
+            break;
+        case 1:
+            $img = imagecreate($img_width,$img_height);
+            break;
+        default:
+            die();
+    }
 
 $bg = imagecolorallocate($img,255,255,255);
 $black = imagecolorallocate($img,76,76,76);
@@ -65,27 +64,26 @@ $bdr_keepout = 0.1;
 
 for($i=0;$i<$len;$i++)
 {
-	$font_size = rand($min_font_sz,$max_font_sz);
-	$xpos += imagefontwidth($font_size);
+    $font_size = rand($min_font_sz,$max_font_sz);
+    $xpos += imagefontwidth($font_size);
 
-	$yoff_max = $img_height - intval((1+$bdr_keepout)*(imagefontheight($font_size)));
-	$yoff_min = intval( $bdr_keepout * (imagefontheight($font_size) ) );
-	
-	$ypos = rand($yoff_min, $yoff_max);
+    $yoff_max = $img_height - intval((1+$bdr_keepout)*(imagefontheight($font_size)));
+    $yoff_min = intval( $bdr_keepout * (imagefontheight($font_size) ) );
+    
+    $ypos = rand($yoff_min, $yoff_max);
   $vert = false;
 //
 // UNTESTED FEATURE - On servers using GD2
 // You can uncomment the following line to also display chars vertically
 //	$vert = rand(1);
-	if ($vert && ($gd == 2) ) {
-		imagecharup($img,$font_size,$xpos,$ypos,$code,$black);
-	} else {
-		imagechar($img,$font_size,$xpos,$ypos,$code,$black);
-	}
-	$code = substr($code,1);    
+    if ($vert && ($gd == 2) ) {
+        imagecharup($img,$font_size,$xpos,$ypos,$code,$black);
+    } else {
+        imagechar($img,$font_size,$xpos,$ypos,$code,$black);
+    }
+    $code = substr($code,1);
 }
 header("Content-Type: image/jpeg");
-imagejpeg($img); 
+imagejpeg($img);
 imagedestroy($img);
 die();
-?>

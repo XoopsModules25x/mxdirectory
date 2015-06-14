@@ -49,7 +49,6 @@ if ($couponid > 0) {
     $coupon_handler = new XdirectoryCouponHandler($GLOBALS['xoopsDB']);
     $coupon =& $coupon_handler->get($couponid);
 
-
 //    $coupon_handler =& xoops_getmodulehandler('coupon', $mydirname);
 //    $coupon =& $coupon_handler->get($couponid);
     $lid = $coupon->getVar('lid');
@@ -59,7 +58,7 @@ if ($couponid > 0) {
     $coupon->setVar('dobr', $lbr);
     $descr = $coupon->getVar('description', 'E');
     $image = $coupon->getVar('image', 'E');
-	  $heading = $coupon->getVar('heading', 'E');
+      $heading = $coupon->getVar('heading', 'E');
     $publish = $coupon->getVar('publish') > 0 ? $coupon->getVar('publish') : time();
     $expire = $coupon->getVar('expire');
     if ($expire > 0) {
@@ -76,7 +75,7 @@ else {
     $descr = isset($_POST['descr']) ? $_POST['descr'] : "";
     $publish = isset($_POST['publish']) ? $_POST['publish'] : 0;
     $image = isset($_POST['image']) ? $_POST['image'] : "";
-		$expire = isset($_POST['expire']) ? $_POST['expire'] : 0;
+        $expire = isset($_POST['expire']) ? $_POST['expire'] : 0;
     $heading = isset($_POST['heading']) ? $_POST['heading'] : "";
     $lbr = isset($_POST['lbr']) ? $lbr : 0;
     if ($expire > 0) {
@@ -148,4 +147,3 @@ elseif (!empty($_POST['delete'])) {
 include XOOPS_ROOT_PATH.'/header.php';
 include 'include/couponform.php';
 include_once XOOPS_ROOT_PATH.'/footer.php';
-?>

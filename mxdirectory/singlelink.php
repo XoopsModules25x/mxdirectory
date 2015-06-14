@@ -55,8 +55,6 @@ include XOOPS_ROOT_PATH."/header.php";
 $result = $xoopsDB->query("select l.lid, l.cid, l.title, l.address, l.address2, l.city, l.state, l.zip, l.country, l.mfhrs, l.sathrs, l.sunhrs, l.phone, l.fax, l.mobile, l.home, l.tollfree, l.email, l.url, l.admcontname, l.admcontnumb, l.logourl, l.status, l.date, l.hits, l.rating, l.votes, l.comments, l.premium, t.description from ".$xoopsDB->prefix("xdir_links")." l, ".$xoopsDB->prefix("xdir_text")." t where l.lid=$lid and l.lid=t.lid and status>0");
 list($lid, $cid, $ltitle, $address, $address2, $city, $state, $zip, $country, $mfhrs, $sathrs, $sunhrs, $phone, $fax, $mobile, $home, $tollfree, $email, $url, $admname, $admnumb, $logourl, $status, $time, $hits, $rating, $votes, $comments, $premium, $description) = $xoopsDB->fetchRow($result);
 
-
-
 //Pretty Page Titles
 $title="";
 
@@ -67,8 +65,8 @@ if($cid>0)
   $min=0;
   $sql = "SELECT title FROM ".$xoopsDB->prefix("xdir_cat")." t where cid=$cid";
   $result=$xoopsDB->query($sql,$show,$min);
-	$myrow = $xoopsDB->fetchArray($result);
-	$title=' - '  . $myts->htmlSpecialChars($myrow['title']);
+    $myrow = $xoopsDB->fetchArray($result);
+    $title=' - '  . $myts->htmlSpecialChars($myrow['title']);
 }
 
 $xoopsTpl->assign('xoops_pagetitle', $myts->htmlSpecialChars($xoopsModule->getVar('name')). $myts->htmlSpecialChars($title).' - '.$myts->htmlSpecialChars($ltitle));
@@ -167,4 +165,3 @@ $xoopsTpl->assign('smartydir', $smartydir);
 //$xoopsTpl->assign('lang_url', _MD_MXDIR_BUSURL);
 include XOOPS_ROOT_PATH.'/include/comment_view.php';
 include XOOPS_ROOT_PATH.'/footer.php';
-?>

@@ -49,14 +49,14 @@ $mail_body = rawurlencode(sprintf(_MD_MXDIR_INTLINKFOUND,$xoopsConfig['sitename'
 </head><body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="150"><a href="<? echo XOOPS_URL; ?>" target="xoopshead"><img src="<? echo XOOPS_URL; ?>/images/logo.gif" alt="" /></a>
+<td width="150"><a href="<?php echo XOOPS_URL; ?>" target="xoopshead"><img src="<?php echo XOOPS_URL; ?>/images/logo.gif" alt="" /></a>
 <td width="100%" align="center">
 <table class="bg3" width=95% cellspacing="2" cellpadding="3" border="0" style="border: #e0e0e0 1px solid;"><tr>
 <td style="border-bottom: #e0e0e0 1px solid;">
-<b><? echo $xoopsConfig['sitename']; ?></b></td>
+<b><?php echo $xoopsConfig['sitename']; ?></b></td>
 </tr>
 <tr>
 <td class='bg4' align="center"><small>
-<a target="main" href="ratelink.php?cid=<? echo $cid; ?>&amp;lid=<? echo $lid; ?>"><? echo _MD_MXDIR_RATETHISSITE; ?></a> | <a target="main" href="brokenlink.php?lid=<? echo $lid; ?>"><? echo _MD_MXDIR_REPORTBROKEN; ?></a> | <a target='_top' href='contact.php?op=tell&amp;subject=<? echo $mail_subject; ?>&body=<? echo $mail_body;?>'><? echo _MD_MXDIR_TELLAFRIEND; ?></a> | <a target='_top' href="<? echo XOOPS_URL; ?>">Back to <? echo $xoopsConfig['sitename']; ?></a> | <a target='_top' href="<? echo $url; ?>">Close Frame</a>
+<a target="main" href="ratelink.php?cid=<?php echo $cid; ?>&amp;lid=<?php echo $lid; ?>"><?php echo _MD_MXDIR_RATETHISSITE; ?></a> | <a target="main" href="brokenlink.php?lid=<?php echo $lid; ?>"><?php echo _MD_MXDIR_REPORTBROKEN; ?></a> | <a target='_top' href='contact.php?op=tell&amp;subject=<?php echo $mail_subject; ?>&body=<?php echo $mail_body;?>'><?php echo _MD_MXDIR_TELLAFRIEND; ?></a> | <a target='_top' href="<?php echo XOOPS_URL; ?>">Back to <?php echo $xoopsConfig['sitename']; ?></a> | <a target='_top' href="<?php echo $url; ?>">Close Frame</a>
 </small></td></tr></table>
 </td></tr></table></body></html>

@@ -15,7 +15,6 @@ define('_AM_MXDIR_ACTIVERIGHTS','Admin Rights');
 define('_AM_MXDIR_ACCESSRIGHTS','Access Rights');
 define('_AM_MXDIR_UNLIMIT','Unlimited');
 
-
 define('_AM_MXDIR_BCACHETIME', 'Cache time');
 define('_AM_MXDIR_ADGS', 'Groups');
 

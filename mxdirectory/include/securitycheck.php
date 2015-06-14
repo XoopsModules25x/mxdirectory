@@ -27,31 +27,32 @@
 if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 function mx_security_check($inval, $goodkey) {
-	$retval = false;
+    $retval = false;
   $code= mx_calc_security($goodkey);
   if ($code) {
-  	$retval = ($code == $inval) ? $code : false ;
-	}
-	return $retval;
+    $retval = ($code == $inval) ? $code : false ;
+    }
+
+    return $retval;
 }
 
 function mx_calc_security($rnd_num) {
-	global $xoopsModule;
-	$mydirname = (basename ( dirname ( dirname( __FILE__ ) ) , "a" ) ) ;
+    global $xoopsModule;
+    $mydirname = (basename ( dirname ( dirname( __FILE__ ) ) , "a" ) ) ;
 
-	$retval = false;
-	if ($rnd_num) {
-		if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != $mydirname) {	
-			$module_handler =& xoops_gethandler('module');
-			$module =& $module_handler->getByDirname($mydirname);
-		} else {
-			$module =& $xoopsModule;
-		}
-		$smid = $module->getVar('mid');
-		$datekey = date("F j");
-	  $rcode = hexdec(md5($_SERVER['HTTP_USER_AGENT'].$rnd_num.$smid.$datekey));
-  	$retval = substr($rcode, 2, 6);
-	}
-	return $retval;
+    $retval = false;
+    if ($rnd_num) {
+        if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != $mydirname) {
+            $module_handler =& xoops_gethandler('module');
+            $module =& $module_handler->getByDirname($mydirname);
+        } else {
+            $module =& $xoopsModule;
+        }
+        $smid = $module->getVar('mid');
+        $datekey = date("F j");
+      $rcode = hexdec(md5($_SERVER['HTTP_USER_AGENT'].$rnd_num.$smid.$datekey));
+    $retval = substr($rcode, 2, 6);
+    }
+
+    return $retval;
 }
-?>

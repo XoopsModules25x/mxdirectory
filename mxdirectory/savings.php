@@ -56,8 +56,7 @@ $xoopsTpl->assign('categories', $coupon_handler->prepare2show($categories));
 if ($xoopsUser) {
     $xoopsTpl->assign('admin', $xoopsUser->isAdmin($xoopsModule->mid()));
 }
-	//Smarty directory autodetect
-	$xoopsTpl->assign('smartydir', $mydirname);
+    //Smarty directory autodetect
+    $xoopsTpl->assign('smartydir', $mydirname);
 
 include XOOPS_ROOT_PATH.'/footer.php';
-?>

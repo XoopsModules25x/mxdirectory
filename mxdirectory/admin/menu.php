@@ -43,7 +43,6 @@ $pathIcon32      = $module->getInfo('icons32');
 $pathModuleAdmin = $module->getInfo('dirmoduleadmin');
 $pathLanguage    = $path . $pathModuleAdmin;
 
-
 if (!file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
     $fileinc = $pathLanguage . '/language/english/main.php';
 }
@@ -92,4 +91,3 @@ $i++;
 $adminmenu[$i]['title'] = _AM_MODULEADMIN_ABOUT;
 $adminmenu[$i]["link"]  = "admin/about.php";
 $adminmenu[$i]["icon"]  = $pathIcon32 . '/about.png';
-

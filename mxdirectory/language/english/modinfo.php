@@ -25,14 +25,12 @@ define("_MI_MXDIR_BNAME6DSC","Shows category links in a block");
 define("_MI_MXDIR_BNAME7","Rating Listings");
 define("_MI_MXDIR_BNAME7DSC","Shows top rated listings");
 
-
 // Sub menu titles
 define("_MI_MXDIR_SMNAME1","Submit");
 define("_MI_MXDIR_SMNAME2","Popular");
 define("_MI_MXDIR_SMNAME3","Top Rated");
 define("_MI_MXDIR_SMNAME4","Special Offers");
 define("_MI_MXDIR_SMNAME5","My Listings");
-
 
 // Names of admin menu items
 define("_MI_MXDIR_ADMENU1","Overview");
@@ -105,7 +103,6 @@ define('_MI_MXDIR_PREMIUM_LOLI', 'Activate Logos in Links');
 define('_MI_MXDIR_PREMIUM_LOLF', 'Activate Logos in Listing');
 define('_MI_MXDIR_PREMIUM_LLSLI', 'List level in Sponsored Links');
 define('_MI_MXDIR_PREMIUM_LLCSLI', 'Display level Color in Sponsored Links');
-
 
 define('_MI_MXDIR_PREMIUM_XNAME', 'Name');
 define('_MI_MXDIR_PREMIUM_XOPTS', 'Options');
@@ -236,5 +233,3 @@ define('_MI_MXDIR_LINK_APPROVE_NOTIFY', 'Listing Approved');
 define('_MI_MXDIR_LINK_APPROVE_NOTIFYCAP', 'Notify me when this listing is approved.');
 define('_MI_MXDIR_LINK_APPROVE_NOTIFYDSC', 'Receive notification when this listing is approved.');
 define('_MI_MXDIR_LINK_APPROVE_NOTIFYSBJ', '[{X_SITENAME}] {X_MODULE} auto-notify : Listing approved');
-
-?>

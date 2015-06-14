@@ -48,7 +48,7 @@ include XOOPS_ROOT_PATH."/modules/" . $mydirname . "/include/functions.php";
 $xoops_module_header = '<link rel="stylesheet" type="text/css" href="'.XOOPS_URL.'/modules/'.$mydirname.'/images/style.css" />';
 
 if(empty($xoopsModuleConfig['rss_enable'])){
-	$xoops_module_header .= '
+    $xoops_module_header .= '
 	<link rel="alternate" type="application/rss+xml" title="'.$mydirname.'" href="'.XOOPS_URL.'/modules/'.$mydirname.'/mxdir_rss.php" />
 	';
 }
