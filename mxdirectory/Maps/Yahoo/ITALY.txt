@@ -1,8 +1,0 @@
-<form name=mapForm action="http://www.maporama.com/share/map.asp?" target="_new" method="get">
-  <input type="hidden" name="COUNTRYCODE" value="IT" />
-  <input type="hidden" name="_XgoGCAddress" value="<{$link.address}>" />
-  <input type="hidden" name="Zip" value="" />
-  <input type="hidden" name="State" value="" />
-  <input type="hidden" name="_XgoGCTownName" value="<{$link.city}>" />
-  <input type="submit" name="getmap" class="c_mapbtn" value="<{$smarty.const._MD_MXDIR_MAPBTN}>" />
-</form>

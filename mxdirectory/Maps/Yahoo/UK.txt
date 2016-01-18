@@ -1,4 +1,0 @@
-<form name=mapForm action="http://www.multimap.com/map/browse.cgi?" target="_new" method="get">
-  <input type="hidden" name="pc" value="<{$link.zip}>" />
-  <input name="getmap" type="submit" class="c_mapbtn" value="<{$smarty.const._MD_MXDIR_MAPBTN}>" />
-</form> 

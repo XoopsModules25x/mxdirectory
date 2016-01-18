@@ -1,6 +1,0 @@
-<form action="http://maps.google.com.au/maps?" method="get" name="mapForm2" target="_new" id="mapForm2">
-                <input type="hidden" name="f" value="q" />
-                <input type="hidden" name="hl" value="au" />
-                <input type="hidden" name="q" value="<{$link.address}>, <{$link.zip}> <{$link.city}>, <{$link.country}> " />
-                <input type=submit name="getmap" value="Map">
-            </form>

@@ -1,0 +1,39 @@
+Module Name      :    MX-Directory
+Version Number   :    3.00
+Module developer :    Tripmon
+
+**Upgrades from mxdirectory Beta1 should see instructions in readme1st.txt... do not use this upgrade process.
+
+Upgrade Instructions
+**Backup your database, customized templates and module files before upgrading.
+
+UPGRADE From xdirectory CURRENTLY DOES NOT SUPPORT DIRECTORY NAME CHANGE.
+Upgrades from an existing xdirectory install will have to retain the current directory name.
+If you have already changed the name, the upgrade will support the directory's current name.
+
+Quick Start UPGRADE INSTRUCTIONS:
+1) Upload or unpack the contents of the mxdirectory folder to your /modules/mxdirectory folder.
+2) Log in to your site as admin.
+3) Go to:
+    http://[your-xoopsroot]/modules/[your-mxdirectory-name]/admin/upgrade.php.
+4) If successful you should see:
+    Upgrade Complete - Update module templates and blocks
+5) If you don't see ^ that ^ post the results to the support or bug tracker at:
+    http://dev.xoops.org/modules/xfmod/tracker/?group_id=1223
+6) Click the 'Update module templates and blocks' link
+7) Click the upgrade button
+8) Regenerate ANY/ALL mxdirectory custom templates.
+
+Additional Upgrade Information.
+The upgrade scripts add tables and fields to the existing xdir_ tables.  For specific information see upgrade.sql
+Nothing is omitted from any of the existing xdir_ tables, only additions.
+This upgrade should not affect existing categories, sub-cats, listings, logos, or premium service levels.
+Your existing data will not be overwitten or erased as a result of the process listed above.
+
+The templates have changed considerably from previous releases.  It is highly recommended that you review the
+new templates prior to overwriting them with previously modified templates.  In many cases a "merge" of the old
+template into the new template will give better results than attempting to 'hack in' the new template variables
+into previous templates.
+
+If you experience difficulties with the process,  post to the support or bug tracker at:
+    http://dev.xoops.org/modules/xfmod/tracker/?group_id=1223
