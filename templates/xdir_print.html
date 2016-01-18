@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<{$xoops_langcode}>" lang="<{$xoops_langcode}>">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>" />
+<meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<meta name="robots" content="<{$xoops_meta_robots}>" />
+<meta name="keywords" content="<{$xoops_meta_keywords}>" />
+<meta name="description" content="<{$xoops_meta_description}>" />
+<meta name="rating" content="<{$xoops_meta_rating}>" />
+<meta name="author" content="<{$xoops_meta_author}>" />
+<meta name="copyright" content="<{$xoops_meta_copyright}>" />
+<meta name="generator" content="XOOPS" />
+<title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+</head>
+<body style="background-color: "#ffffff"; font-color: #000000;" onLoad="window.print()">
+<table width="100%" border="0" cellpadding="10" cellspacing="0" class="print_box">
+	<tr>
+		<td style="text-align: center;">
+      <{if $link.logourl != "" && $link.lvlopts.8 == "1"}>
+          <br />
+				  <img src="<{$xoops_url}>/modules/<{$smartydir}>/images/shots/<{$link.logourl}>" alt="<{$smarty.const._MD_MXDIR_LOGO}>" />
+				  <br />
+      <{/if}>
+				<table class="outer" width='100%' cellspacing='1'>
+				<!--  <tr>
+						<td class="head" colspan='2' align='left' height="18"><{$lang_category}> <{$link.category}></td>
+					</tr> -->
+					<tr>
+						<td class="even" width='60%' align='left' valign="bottom">
+								<table width='100%' cellspacing='0' cellpadding="4">
+									<tr>
+									<td>
+									<span class="print_title" style="font-weight: bold;"><{$link.title}></span><br />
+									<span class="print_address"><{$link.address}><br />
+                  <{if $link.address2 != ""}>
+								    <{$link.address2}><br />
+                  <{/if}>
+									<{$link.city}>, <{$link.state}> <{$link.zip}></span><br />
+	               	<!--	- zyspec - added country - commented out for now
+								<{if $link.country != ""}>
+									<strong><{$lang_country}></strong>
+									<{$link.country}>
+									<br /><br />
+								<{/if}>
+								-->
+	               	<div class="print_contacts"><{section name=bn loop=$link start ="1"}><{$link.biznums[bn]}>&nbsp;&nbsp;<{/section}></div><br />
+								<div class="print_hours"><{section name=hr loop=$link.bizhrs}>(<{$link.bizhrs[hr]}>)&nbsp;&nbsp;<{/section}></div><br />
+							  <{if $link.url != "http://" && $link.url != "" && $link.lvlopts.4 == "1"}>
+				          <a href='visit.php?cid=<{$link.cid}>&lid=<{$link.id}>' target='_blank'><img src='images/link.gif' border='0' alt='&lt;{$lang_visit}&gt;' /><span class="print_url"><{$link.url}></span></a>
+	              <{/if}>					  </td>
+                                    <!--
+									<td class="even" align='right' width='40%'>
+										<table border=0>
+											<tr>
+												<td>
+													<form name=print action='<{$SCRIPT_NAME}>' method=get>
+														<input type="button" onclick="window.print()" value='Print' />
+													</form>
+												</td>
+											</tr>
+								 	</table>
+								</td>
+-->
+						</tr>
+					 </table>
+					</td>
+				 </tr>
+				 <tr>
+					<td class="odd" colspan='2' align='left'><span
+                            style="font-weight: bold;"><{$lang_description}></span><br />
+						<div class="print_description" style="text-align: justify"><{$link.description}></div>
+						<br />
+					</td>
+				 </tr>
+				 <tr>
+						<td colspan='2' align="center"><form name=close action='<{$SCRIPT_NAME}>' method=get><input type="button" class="print_button" onClick="window.close()" value='<{$smarty.const._MD_MXDIR_CLOSEWINBTN}>' />
+						</form></td>
+				 </tr>
+				 <tr><td>&nbsp;</td></tr>
+    		<tr>
+			    <td align="center"><font style="font-family: arial, helvetica, sans-serif; font-size: medium;"><{$print_footer}></font></td>
+		    </tr>
+				</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
